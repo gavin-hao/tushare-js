@@ -11,7 +11,7 @@ class Client implements IDataApi {
   private token: string;
   private timeout: number | undefined;
   private url: string;
-  constructor(token: string, endpoint?: string, timeout: number = 0) {
+  constructor(token: string, endpoint?: string, timeout?: number) {
     this.token = token;
     this.timeout = timeout;
     this.url = endpoint || _endpoint;
@@ -20,44 +20,75 @@ class Client implements IDataApi {
   async query(param: QueryParam): Promise<QueryResult> {
     const { api_name, params, fields } = param;
 
-    if (api[api_name]) {
-      throw new Error('api_name not supported');
+    if (!api[api_name]) {
+      throw new Error('api not supported');
     }
 
     // if fields not set, output all fields of api defined
-    const _fields = fields && fields.length ? fields : api[api_name]?.fields;
+    const _fields = fields && fields.length ? fields : api[api_name].fields;
 
-    try {
-      const response = await axios.post(
-        this.url,
-        {
-          api_name: api_name,
-          token: this.token,
-          params,
-          fields: _fields,
-        },
-        { timeout: this.timeout }
-      );
-      if (response && response.data && response.data.code === 0) {
-        const { fileds: data_fields, items: data_items, hasMore } = response.data.data;
-        const data = formatData({ fields: data_fields, items: data_items });
+    const response = await axios.post(
+      this.url,
+      {
+        api_name: api_name,
+        token: this.token,
+        params,
+        fields: _fields,
+      },
+      { timeout: this.timeout }
+    );
+    if (response && response.data && response.data.code === 0) {
+      const { fields: data_fields, items: data_items, hasMore } = response.data.data;
+      const data = formatData({ fields: data_fields, items: data_items });
 
-        return {
-          isSuccess: true,
-          data,
-          hasMore,
-        };
-      } else {
-        return {
-          isSuccess: false,
-          msg: response.data.msg,
-        };
-      }
-    } catch (error) {
-      // Noncompliant
-      throw error;
+      return {
+        isSuccess: true,
+        data,
+        hasMore,
+      };
+    } else {
+      return {
+        isSuccess: false,
+        code: response.data.code,
+        msg: response.data.msg,
+      };
     }
   }
+  // const pro_bar = (
+  //   ts_code: string,
+  //   start_date?: string,
+  //   end_date?: string,
+  //   freq: string = 'D',
+  //   asset: string = 'E',
+  //   exchange: string = '',
+  //   adj: string,
+  //   ma: string[] = [],
+  //   factors: string = undefined,
+  //   contract_type: string = ''
+  // ) => {
+  //   let _ts_code = '';
+  //   let _freq = '';
+  //   let _asset = asset.trim().toUpperCase();
+  //   if (asset != 'C') {
+  //     _ts_code = ts_code.trim().toUpperCase();
+  //     _freq = freq.trim().toUpperCase();
+  //   } else {
+  //     _ts_code = ts_code.trim().toLowerCase();
+  //     _freq = freq.trim().toLowerCase();
+  //   }
+  //   // switch (_asset) {
+  //   //   case 'E': {
+  //   //     if (_freq == 'D') {
+  //   //       const df = client.query({ api_name: 'daily', params: { ts_code: _ts_code, start_date, end_date } });
+  //   //     } else if (_freq == 'W') {
+  //   //       const df = client.query({ api_name: 'weekly', params: { ts_code: _ts_code, start_date, end_date } });
+  //   //     } else if (_freq == 'M') {
+  //   //       const df = client.query({ api_name: 'monthly', params: { ts_code: _ts_code, start_date, end_date } });
+  //   //     }
+  //   //   }
+  //   // }
+  //   return [];
+  // };
 }
 
 export default Client;
