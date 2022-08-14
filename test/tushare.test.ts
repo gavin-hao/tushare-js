@@ -1,11 +1,7 @@
-import d from 'dotenv';
 import TuShare from '../src/index';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { stock_basic, daily } from './tushare.data';
-import exp from 'constants';
-
-// d.config();
 
 describe('TuShare Class', () => {
   const token = process.env.token || '97a54f9b384e648ec2fb0e4bb077febcb40b22856c75953997d01f6a';
