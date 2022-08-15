@@ -1,6 +1,7 @@
 export interface QueryResult {
   isSuccess: boolean;
   msg?: string;
+  code?: number;
   data?: Record<string, any>[];
   hasMore?: boolean;
 }

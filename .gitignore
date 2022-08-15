@@ -11,3 +11,5 @@ es
 yarn-error.log
 npm-error.log
 .eslintcache
+coverage
+.env.*
