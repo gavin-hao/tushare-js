@@ -32,7 +32,7 @@ jobs:
           node-version: 'lts/*'
       - name: Cache node modules
         uses: actions/cache@v3
-        id: cache-npm
+        id: cache-node-modules
         env:
           cache-name: cache-node-modules
         with:
