@@ -3,6 +3,18 @@
     {
       "name": "master",
       "prerelease": false
+    },
+    {
+      "name": "+([0-9])?(.{+([0-9]),x}).x",
+      "prerelease": false
+    },
+    {
+      "name": "beta",
+      "prerelease": true
+    },
+    {
+      "name": "alpha",
+      "prerelease": true
     }
   ],
   "plugins": [
