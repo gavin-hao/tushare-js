@@ -40,7 +40,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn install --immutable
+        run: yarn install --frozen-lockfile
   lint:
     name: Linting
     needs: setup
