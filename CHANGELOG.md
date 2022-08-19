@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/gavin-hao/tushare-js/compare/v1.0.0...v1.1.0) (2022-08-19)
+
+
+### Features
+
+* **pro_bar:** add pro_bar method ([45c8357](https://github.com/gavin-hao/tushare-js/commit/45c835725e9b18350801615743c71cced940682a))
+* **pro_bar:** add pro_bar method ([fd01336](https://github.com/gavin-hao/tushare-js/commit/fd013361b3bc7d90065ef1b0293897c036d9a08d))
+
 # 1.0.0 (2022-08-15)
 
 
