@@ -33,14 +33,12 @@ jobs:
       - name: Cache node modules
         uses: actions/cache@v3
         id: cache-node-modules
-        env:
-          cache-name: cache-node-modules
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
+        run: yarn install
   lint:
     name: Linting
     needs: setup
