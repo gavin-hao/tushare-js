@@ -1,6 +1,6 @@
 import Client from './client';
 import { api, Api } from './const';
-import { QueryResult, IDataApi, QueryParam } from './interface';
+import { QueryResult, IDataApi, QueryParam, ProBarQueryParam } from './interface';
 export * from './interface';
 
 type ApiParam = Omit<QueryParam, 'api_name'>;
@@ -13,6 +13,7 @@ const TuShare = function (token: string, endpoint?: string, timeout?: number): I
 
   const dataApi: ITuShare = {
     query: (param: QueryParam) => client.query(param),
+    pro_bar: (param: ProBarQueryParam) => client.pro_bar(param),
   } as unknown as ITuShare;
   for (const apiName in api) {
     (dataApi as any)[apiName] = (param: ApiParam) => {

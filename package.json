@@ -54,6 +54,7 @@
     "axios-mock-adapter": "^1.21.2",
     "cd": "^0.3.3",
     "cz-conventional-changelog": "^3.3.0",
+    "dotenv": "^16.0.1",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
@@ -81,6 +82,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "axios-retry": "^3.3.1"
+    "axios-retry": "^3.3.1",
+    "danfojs-node": "^1.1.1"
   }
 }

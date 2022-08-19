@@ -2,7 +2,8 @@ import TuShare from '../src/index';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { stock_basic, daily } from './tushare.data';
-
+import dotenv from 'dotenv';
+dotenv.config();
 describe('TuShare Class', () => {
   const token = process.env.token || '97a54f9b384e648ec2fb0e4bb077febcb40b22856c75953997d01f6a';
   const ts = TuShare(token);
@@ -72,4 +73,12 @@ describe('TuShare Class', () => {
     });
     expect(result.isSuccess).toBe(true);
   });
+  // test('pro_bar', async () => {
+  //   const mock = new MockAdapter(axios);
+  //   mock.onPost(`http://api.tushare.pro`).reply(() =>
+  //     // the actual id can be grabbed from config.url
+  //     [200, daily]
+  //   );
+  //   await ts.pro_bar({ ts_code: '002156', start_date: '20200808', end_date: '20220809', freq: 'D' });
+  // });
 });

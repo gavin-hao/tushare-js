@@ -15,11 +15,13 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "outDir": "./dist/lib",
     "rootDir": "./src"
   },
   "exclude": [
-    "../node_modules",
+    "./node_modules",
     "./**/*.spec.ts",
     "./**/*.test.ts"
   ],
