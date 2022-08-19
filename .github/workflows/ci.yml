@@ -26,14 +26,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
+      - name: echo
+        run: echo "${{ hashFiles('yarn.lock') }}"
       - name: Cache node modules
         uses: actions/cache@v3
         id: cache-node-modules
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-      - name: echo
-        run: echo "${{ hashFiles('yarn.lock') }}"
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: yarn install
