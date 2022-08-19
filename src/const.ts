@@ -86,6 +86,9 @@ export interface Api {
   fund_portfolio: ApiDescription;
   fund_daily: ApiDescription;
   fund_adj: ApiDescription;
+  coin_bar: ApiDescription;
+  opt_daily: ApiDescription;
+  fut_daily: ApiDescription;
 }
 
 export const fieldsDescription = {
@@ -2126,6 +2129,104 @@ export const api: Api = {
   fund_adj: {
     params: {},
     fields: ['ts_code', 'trade_date', 'adj_factor'],
+  },
+  /**
+   * 接口：coin_bar
+   * 描述：获取数字货币数据，包括1分钟、5分、15、30、60分钟、日线等K线数据
+   * 限量：单次最大8000条数据
+   * 权限：120具备每分钟2次试用，开通正式权限请参考以下方式。
+   */
+  coin_bar: {
+    params: {
+      ts_code: '',
+      symbol: '',
+      exchange: '',
+      freq: '',
+      start_date: '',
+      end_date: '',
+      is_contract: '',
+      limit: '',
+      offset: '',
+    },
+    fields: [
+      'exchange',
+      'ts_code',
+      'symbol',
+      'freq',
+      'trade_time',
+      'open',
+      'close',
+      'high',
+      'low',
+      'vol',
+      'is_contract',
+    ],
+  },
+  /**
+   * 接口：fut_daily，可以通过数据工具调试和查看数据。
+   * 描述：期货日线行情数据
+   * 限量：单次最大2000条，总量不限制
+   * 积分：用户需要至少2000积分才可以调取，未来可能调整积分，请尽量多的积累积分。具体请参阅积分获取办法
+   */
+  fut_daily: {
+    params: {
+      trade_date: '',
+      ts_code: '',
+      exchange: '',
+      start_date: '',
+      end_date: '',
+      limit: '',
+      offset: '',
+    },
+    fields: [
+      'ts_code',
+      'trade_date',
+      'pre_close',
+      'pre_settle',
+      'open',
+      'high',
+      'low',
+      'close',
+      'settle',
+      'change1',
+      'change2',
+      'vol',
+      'amount',
+      'oi',
+      'oi_chg',
+    ],
+  },
+  /**
+   * 接口：opt_daily
+   * 描述：获取期权日线行情
+   * 限量：单次最大1000，总量不限制
+   * 积分：用户需要至少2000积分才可以调取，但有流量控制，请自行提高积分，积分越多权限越大，具体请参阅积分获取办法
+   */
+  opt_daily: {
+    params: {
+      ts_code: '',
+      trade_date: '',
+      start_date: '',
+      end_date: '',
+      exchange: '',
+      limit: '',
+      offset: '',
+    },
+    fields: [
+      'ts_code',
+      'trade_date',
+      'exchange',
+      'pre_settle',
+      'pre_close',
+      'open',
+      'high',
+      'low',
+      'close',
+      'settle',
+      'vol',
+      'amount',
+      'oi',
+    ],
   },
   // @TODO: 期货
   // @TODO: 期权

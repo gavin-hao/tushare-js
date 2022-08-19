@@ -72,4 +72,12 @@ describe('TuShare Class', () => {
     });
     expect(result.isSuccess).toBe(true);
   });
+  // test('pro_bar', async () => {
+  //   const mock = new MockAdapter(axios);
+  //   mock.onPost(`http://api.tushare.pro`).reply(() =>
+  //     // the actual id can be grabbed from config.url
+  //     [200, daily]
+  //   );
+  //   await ts.pro_bar({ ts_code: '002156', start_date: '20200808', end_date: '20220809', freq: 'D' });
+  // });
 });

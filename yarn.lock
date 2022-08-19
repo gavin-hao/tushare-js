@@ -4014,11 +4014,6 @@ ignore@^5.2.0:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.0.tgz#6d3bac8fa7fe0d45d9f9be7bac2fc279577e345a"
   integrity sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==
 
-immutable@^3.8.1:
-  version "3.8.2"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
-  integrity sha512-15gZoQ38eYjEjxkorfbcgBKBL6R7T459OuK+CpcWt7O3KF4uPCx2tD0uFETlUDIyo+1789crbMhTvQBSR5yBMg==
-
 import-fresh@^3.0.0, import-fresh@^3.2.1:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.0.tgz#37162c25fcb9ebaa2e6e53d5b4d88ce17d9e0c2b"
@@ -6172,13 +6167,6 @@ pacote@^13.0.3, pacote@^13.6.1:
     rimraf "^3.0.2"
     ssri "^9.0.0"
     tar "^6.1.11"
-
-pandas-js@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/pandas-js/-/pandas-js-0.2.4.tgz#7bfbda79aab0e5c278203789ca26b703633235d7"
-  integrity sha512-/zZV9z/u8SOny/0RQFik6OhG0ieBZb23TRHNs4pUHj2ONDeqvlHN9742pQXVvj6IYFFm0FaAmmWuBqz/mDLFmg==
-  dependencies:
-    immutable "^3.8.1"
 
 papaparse@^5.3.1:
   version "5.3.2"
