@@ -2,7 +2,7 @@ import Client from './client';
 import { api, Api } from './const';
 import { QueryResult, IDataApi, QueryParam, ProBarQueryParam } from './interface';
 export * from './interface';
-
+export * from './formula';
 type ApiParam = Omit<QueryParam, 'api_name'>;
 export type ITuShare = IDataApi & {
   [Property in keyof Api]: (param: ApiParam) => Promise<QueryResult>;

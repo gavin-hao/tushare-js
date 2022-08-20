@@ -1,6 +1,5 @@
 import { IDataApi, ProBarQueryParam, QueryParam, QueryResult } from './interface';
 import axios from 'axios';
-// import formatData from './formatData';
 import { api } from './const';
 import axiosRetry from 'axios-retry';
 import { merge, DataFrame, Series } from 'danfojs-node';
@@ -8,8 +7,6 @@ import { MA } from './formula';
 const _endpoint = 'http://api.tushare.pro';
 axiosRetry(axios, { retries: 3, shouldResetTimeout: true });
 const PRICE_COLS = ['open', 'close', 'high', 'low', 'pre_close'];
-// const FORMAT = lambda x: '%.2f' % x
-const FREQS = { D: '1DAY', W: '1WEEK', Y: '1YEAR' };
 class Client implements IDataApi {
   private token: string;
   private timeout: number | undefined;
