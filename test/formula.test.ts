@@ -25,7 +25,7 @@ describe('Formula testing', () => {
     const data1 = [1, 2, 3, 4, 5, 6, 7];
     const ma = MA(data1, 3);
 
-    const data2 = [NaN, NaN, 2, 3, 4, 5, 6];
+    const data2 = [1, 1.5, 2, 3, 4, 5, 6]; //[NaN, NaN, 2, 3, 4, 5, 6];
     expect(ma).toStrictEqual(data2);
   });
 });
