@@ -12,7 +12,7 @@
   "dependencies": {
     "danfojs-node": "^1.1.1",
     "dotenv": "^16.0.1",
-    "tushare-js": "^1.0.0"
+    "tushare-js": "^1.2.0"
   },
   "devDependencies": {
     "@types/node": "^18.7.6",

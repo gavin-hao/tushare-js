@@ -61,8 +61,9 @@ class Client implements IDataApi {
     );
     if (response && response.data && response.data.code === 0) {
       const { fields: columns, items, hasMore } = response.data.data;
-      const df = new DataFrame(items, columns);
-      const data = df.toJSON({ format: 'row' }) as Record<string, any>[];
+      console.log(columns);
+      const df = new DataFrame(items, { columns });
+      const data = df.toJSON({ format: 'column' }) as Record<string, any>[];
       return {
         isSuccess: true,
         data,
