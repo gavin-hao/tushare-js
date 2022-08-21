@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/gavin-hao/tushare-js/compare/v1.1.0...v1.2.0) (2022-08-21)
+
+
+### Bug Fixes
+
+* **bandle:** move danfojs-node from dependence to peerDependece ([412e586](https://github.com/gavin-hao/tushare-js/commit/412e5867e3991f69e39cadbd290c99175b3e7d29))
+
+
+### Features
+
+* **formula:** add some stock indicator calculate formula ([1cc2f3e](https://github.com/gavin-hao/tushare-js/commit/1cc2f3ec554a81e51935ca20946bde7ddf278370))
+
 # [1.1.0](https://github.com/gavin-hao/tushare-js/compare/v1.0.0...v1.1.0) (2022-08-19)
 
 
