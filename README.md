@@ -3,6 +3,13 @@ tushare.pro node.js sdk
 
 # usage
 
+- external dependency - danfojs-node
+## install
+```bash
+yarn add tushare-js danfojs-node
+```
+
+
 ```js
 import TuShare from 'tushare-js';
 

@@ -54,6 +54,7 @@
     "axios-mock-adapter": "^1.21.2",
     "cd": "^0.3.3",
     "cz-conventional-changelog": "^3.3.0",
+    "danfojs-node": "^1.1.1",
     "dotenv": "^16.0.1",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
@@ -71,6 +72,7 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-typescript2": "^0.32.1",
     "semantic-release": "^19.0.3",
@@ -82,7 +84,9 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "axios-retry": "^3.3.1",
+    "axios-retry": "^3.3.1"
+  },
+  "peerDependencies": {
     "danfojs-node": "^1.1.1"
   }
 }
