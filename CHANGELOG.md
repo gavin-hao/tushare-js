@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/gavin-hao/tushare-js/compare/v1.2.0...v1.2.1) (2022-08-21)
+
+
+### Bug Fixes
+
+* **query:** query data format ([acbf8cc](https://github.com/gavin-hao/tushare-js/commit/acbf8cc355c601b27e9b4963e7b6334df6866447))
+
 # [1.2.0](https://github.com/gavin-hao/tushare-js/compare/v1.1.0...v1.2.0) (2022-08-21)
 
 
