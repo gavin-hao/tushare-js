@@ -73,6 +73,20 @@ describe('TuShare Class', () => {
     });
     expect(result.isSuccess).toBe(true);
   });
+  // test('daily 2', async () => {
+  //   const result = await ts.daily({
+  //     params: {
+  //       // ts_code: '002156',
+  //       // trade_date: '20220809',
+  //       // start_date: '20200808',
+  //       // end_date: '20220809',
+  //       limit: 5,
+  //       offset: 0,
+  //     },
+  //     fields: ['ts_code', 'trade_date', 'open', 'high', 'low'],
+  //   });
+  //   console.log(result);
+  // });
   // test('pro_bar', async () => {
   //   const mock = new MockAdapter(axios);
   //   mock.onPost(`http://api.tushare.pro`).reply(() =>

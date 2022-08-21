@@ -16,7 +16,7 @@ const TuShare = function (token: string, endpoint?: string, timeout?: number): I
     pro_bar: (param: ProBarQueryParam) => client.pro_bar(param),
   } as unknown as ITuShare;
   for (const apiName in api) {
-    (dataApi as any)[apiName] = (param: ApiParam) => {
+    (dataApi as any)[apiName] = async (param: ApiParam) => {
       return client.query({ api_name: apiName, ...param });
     };
   }

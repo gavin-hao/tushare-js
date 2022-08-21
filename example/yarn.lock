@@ -1717,10 +1717,10 @@ tunnel-agent@^0.6.0:
   dependencies:
     safe-buffer "^5.0.1"
 
-tushare-js@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/tushare-js/-/tushare-js-1.0.0.tgz#7c25d0b16b546c8ed6932cae9fbcdb8364c73117"
-  integrity sha512-4DjiArPQdRVHDmhfxPj0fvpRWOysyubbmyfhcbrYXdTJmGPBc67IfrcrY2fndWZrdti70OBPF0L1U59LyIXDQQ==
+tushare-js@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/tushare-js/-/tushare-js-1.2.0.tgz#e4ea8b1081ede62bf79eb0a2b02a90a5af7d2547"
+  integrity sha512-b+JOXb/QcLSuStK84wnkJAkwlkEeg3U/n1p8w1NHChX+YDoXxZNvJAdc/LSNiToGsNpBNO7cLUYj8rfvIe6/vQ==
   dependencies:
     axios "^0.27.2"
     axios-retry "^3.3.1"
