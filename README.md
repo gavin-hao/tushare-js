@@ -1,4 +1,6 @@
 # tushare-js
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fgavin-hao%2Ftushare-js.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fgavin-hao%2Ftushare-js?ref=badge_shield)
+
 tushare.pro node.js sdk
 
 # usage
@@ -27,3 +29,6 @@ const dt=ts.query({
 })
 
 ```
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fgavin-hao%2Ftushare-js.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fgavin-hao%2Ftushare-js?ref=badge_large)
