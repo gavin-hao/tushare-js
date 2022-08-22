@@ -89,6 +89,7 @@ export interface Api {
   coin_bar: ApiDescription;
   opt_daily: ApiDescription;
   fut_daily: ApiDescription;
+  stk_mins: ApiDescription;
 }
 
 export const fieldsDescription = {
@@ -2227,6 +2228,10 @@ export const api: Api = {
       'amount',
       'oi',
     ],
+  },
+  stk_mins: {
+    params: {},
+    fields: [],
   },
   // @TODO: 期货
   // @TODO: 期权

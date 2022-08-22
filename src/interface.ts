@@ -54,7 +54,8 @@ export interface ProBarQueryParam {
    * 均线，支持任意周期的均价和均量，输入任意合理int数值,
    * @example 支持自定义均线频度 ma5/ma10/ma20/ma60/maN
    */
-  ma?: number[];
+  // ma?: number[];
+
   /**
    * factors因子数据，目前支持以下两种：
         vr:量比,默认不返回，返回需指定：factor=['vr']
@@ -63,6 +64,8 @@ export interface ProBarQueryParam {
    */
   factors?: string[];
   contract_type?: string;
+  limit?: number;
+  offset?: number;
 }
 export interface IDataApi {
   // token: string;
