@@ -1,6 +1,11 @@
 # tushare-js
 tushare.pro node.js sdk
 
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://commitizen.github.io/cz-cli/)
+![Continuous Deployment](https://github.com/growingio/gio-design/workflows/Continuous%20Deployment/badge.svg?branch=master)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fgavin-hao%2Ftushare-js.svg?type=shield)](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fgavin-hao%2Ftushare-js.svg?type=shield)
+[![GitHub license](https://img.shields.io/github/license/gavin-hao/tushare-js)](https://github.com/gavin-hao/tushare-js/blob/master/LICENSE)
+
 # usage
 
 - external dependency - danfojs-node
@@ -28,5 +33,8 @@ const dt=ts.query({
 
 ```
 
+## License
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fgavin-hao%2Ftushare-js.svg?type=large)](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fgavin-hao%2Ftushare-js.svg?type=badge_large)
 # Analytics
 ![Alt](https://repobeats.axiom.co/api/embed/6847ed3eb95591ea0da8cc70e1d5adafcebf0aa5.svg "Repobeats analytics image")
