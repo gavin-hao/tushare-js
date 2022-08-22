@@ -27,3 +27,6 @@ const dt=ts.query({
 })
 
 ```
+
+# Analytics
+![Alt](https://repobeats.axiom.co/api/embed/6847ed3eb95591ea0da8cc70e1d5adafcebf0aa5.svg "Repobeats analytics image")
