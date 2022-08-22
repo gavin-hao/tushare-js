@@ -2,7 +2,7 @@
 tushare.pro node.js sdk
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://commitizen.github.io/cz-cli/)
-![Continuous Deployment](https://github.com/growingio/gio-design/workflows/Continuous%20Deployment/badge.svg?branch=master)
+[![Continuous Deployment](https://github.com/gavin-hao/tushare-js/actions/workflows/cd.yml/badge.svg)](https://github.com/gavin-hao/tushare-js/actions/workflows/cd.yml)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fgavin-hao%2Ftushare-js.svg?type=shield)](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fgavin-hao%2Ftushare-js.svg?type=shield)
 [![GitHub license](https://img.shields.io/github/license/gavin-hao/tushare-js)](https://github.com/gavin-hao/tushare-js/blob/master/LICENSE)
 
