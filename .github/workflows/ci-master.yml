@@ -1,6 +1,6 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 # Continuous Integration
-name: CI on push|pr|prt
+name: CI on push
 on:
   push:
     branches:
