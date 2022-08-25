@@ -18,7 +18,7 @@ export interface QueryParam {
 /**
  * asset 资产类别：E股票 I沪深指数 C数字货币 FT期货 FD基金 O期权，默认E
  */
-export type AssetType = 'E' | 'I' | 'C' | 'FT' | 'FD' | 'O';
+export type AssetType = 'E' | 'I' | 'C' | 'FT' | 'FD' | 'O' | 'CB';
 export interface ProBarQueryParam {
   /**
    * 证券代码
@@ -38,7 +38,7 @@ export interface ProBarQueryParam {
    */
   freq?: string;
   /**
-   * 资产类别：E股票 I沪深指数 C数字货币 FT期货 FD基金 O期权，默认E
+   * 资产类别：E股票 I沪深指数 C数字货币 FT期货 FD基金 O期权 CB可转债 ，默认E
    * @default 'E'
    */
   asset?: AssetType;

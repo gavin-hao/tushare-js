@@ -2,11 +2,12 @@ import { IDataApi, ProBarQueryParam, QueryParam, QueryResult } from './interface
 import axios from 'axios';
 import { api } from './const';
 import axiosRetry from 'axios-retry';
-import { merge, DataFrame, Series } from 'danfojs-node';
-import { MA } from './formula';
+import { merge, DataFrame, Series, toJSON } from 'danfojs-node';
+// import { MA } from './formula';
 import * as dateFns from 'date-fns';
 const _endpoint = 'http://api.tushare.pro';
 axiosRetry(axios, { retries: 3, shouldResetTimeout: true });
+const ROUND = 4; //0.12345678=>0.12
 const PRICE_COLS = ['open', 'close', 'high', 'low', 'pre_close'];
 class Client implements IDataApi {
   private token: string;
@@ -44,11 +45,12 @@ class Client implements IDataApi {
     const { api_name, params, fields } = param;
 
     if (!api[api_name]) {
-      throw new Error('api not supported');
+      // throw new Error('api not supported');
+      console.warn('api [%s] may be not supported ', api_name);
     }
 
     // if fields not set, output all fields of api defined
-    const _fields = fields && fields.length ? fields : api[api_name].fields;
+    const _fields = fields && fields.length ? fields : api[api_name]?.fields;
 
     const response = await axios.post(
       this.url,
@@ -172,9 +174,12 @@ class Client implements IDataApi {
           api_name: 'stk_mins',
           params: { ts_code, start_date, end_date, freq, limit, offset },
         });
+        if (!stk_mins.isSuccess) {
+          throw new Error(stk_mins.msg);
+        }
         df = new DataFrame(stk_mins.data);
-        df['trade_date'] = (df['trade_time'] as Series).map((t: string) => t?.replace(/-/g, ''));
-        const pre_close = df.column('close').iloc(['1:']);
+        df['trade_date'] = df.column('trade_time').map((t: string) => t?.replace(/-/g, '').slice(0, 8));
+        const pre_close = df.column('close').iloc(['1:']).append([NaN], [-999]);
         pre_close.resetIndex();
         df.addColumn('pre_close', pre_close);
       }
@@ -198,30 +203,28 @@ class Client implements IDataApi {
         }
         df = df.fillNa(0, { columns: ['adj_factor'] }) as DataFrame;
         df = df.resetIndex() as DataFrame;
+        data = df.copy() as DataFrame;
         for (const col of PRICE_COLS) {
           //后复权
           if (adj === 'hfq') {
-            df[col] = (df[col] as Series).mul(df['adj_factor']);
+            df[col] = data.column(col).mul(data['adj_factor']).round(ROUND);
           } else {
             //前复权
-            let dc = df.column(col).mul(df['adj_factor']);
-            const fct0 = fcts.column('adj_factor').iloc([0]).values[0] as number; // parseFloat(fcts['adj_factor'][0]);
-            dc = dc.div(fct0);
-            df[col] = dc; // (df[col] as Series).mul(df['adj_factor']).div(parseFloat(fcts['adj_factor'][0]));
+            let dc = data.column(col).mul(data['adj_factor']);
+            const fct0 = fcts.column('adj_factor').iloc([0]).values[0] as number;
+            dc = dc.div(fct0).round(ROUND);
+            df[col] = dc;
           }
-          // df.print();
-          // console.log(df.columns);
-          let dfc = df.column('open');
-          dfc = dfc.round(2);
-          df[col] = dfc; //(df[col] as Series).round(2);
         }
-
         df = df.drop({ columns: ['adj_factor'] }) as DataFrame;
 
         if (!freq.includes('min')) {
-          df['change'] = (df['close'] as Series).sub(df['pre_close']);
-          const pct_change = (df.pctChange(1)['close'] as Series).mul(100).asType('float32').round(2);
-          df.addColumn('pct_chg', pct_change, { inplace: true });
+          const change = (df['close'] as Series).sub(df['pre_close']);
+          const pct_chg = change.div(data.column('pre_close')).mul(100).round(ROUND);
+          df.addColumn('change', change.round(ROUND), { inplace: true });
+          df.addColumn('pct_chg', pct_chg, { inplace: true });
+        } else {
+          df.drop({ columns: ['trade_date', 'pre_close'], inplace: true });
         }
         data = df;
       } else {
@@ -232,20 +235,65 @@ class Client implements IDataApi {
         const index_daily = await this.query({ api_name: 'index_daily', params: { ts_code, start_date, end_date } });
         data = new DataFrame(index_daily.data);
       }
+      if (freq == 'W') {
+        const index_daily = await this.query({ api_name: 'index_weekly', params: { ts_code, start_date, end_date } });
+        data = new DataFrame(index_daily.data);
+      }
+      if (freq == 'M') {
+        const index_daily = await this.query({ api_name: 'index_monthly', params: { ts_code, start_date, end_date } });
+        data = new DataFrame(index_daily.data);
+      }
+      if (freq.includes('min')) {
+        const stk_mins = await this.query({
+          api_name: 'stk_mins',
+          params: { ts_code, start_date, end_date, freq, limit, offset },
+        });
+
+        data = new DataFrame(stk_mins.data);
+      }
     } else if (asset === 'FT') {
       if (freq == 'D') {
         const fut_daily = await this.query({ api_name: 'fut_daily', params: { ts_code, start_date, end_date } });
         data = new DataFrame(fut_daily.data);
+      }
+      if (freq.includes('min')) {
+        const ft_mins = await this.query({
+          api_name: 'ft_mins',
+          params: { ts_code, start_date, end_date, freq, limit, offset },
+        });
+
+        data = new DataFrame(ft_mins.data);
       }
     } else if (asset === 'O') {
       if (freq == 'D') {
         const opt_daily = await this.query({ api_name: 'opt_daily', params: { ts_code, start_date, end_date } });
         data = new DataFrame(opt_daily.data);
       }
+      if (freq.includes('min')) {
+        const stk_mins = await this.query({
+          api_name: 'stk_mins',
+          params: { ts_code, start_date, end_date, freq, limit, offset },
+        });
+
+        data = new DataFrame(stk_mins.data);
+      }
+    } else if (asset === 'CB') {
+      if (freq == 'D') {
+        const cb_daily = await this.query({ api_name: 'cb_daily', params: { ts_code, start_date, end_date } });
+        data = new DataFrame(cb_daily.data);
+      }
     } else if (asset === 'FD') {
       if (freq == 'D') {
         const fund_daily = await this.query({ api_name: 'fund_daily', params: { ts_code, start_date, end_date } });
         data = new DataFrame(fund_daily.data);
+      }
+      if (freq.includes('min')) {
+        const stk_mins = await this.query({
+          api_name: 'stk_mins',
+          params: { ts_code, start_date, end_date, freq, limit, offset },
+        });
+
+        data = new DataFrame(stk_mins.data);
       }
     } else if (asset === 'C') {
       let coinbar_freq = freq;
@@ -276,10 +324,10 @@ class Client implements IDataApi {
     //     data.addColumn(`ma_v_${n}`, maVN, { inplace: true });
     //   }
     // }
-
+    // data.print();
     return {
       isSuccess: true,
-      data: data?.toJSON() as Record<string, any>[],
+      data: toJSON(data) as Record<string, any>[],
     };
   }
 }

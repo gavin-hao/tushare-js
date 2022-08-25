@@ -126,22 +126,22 @@ describe('TuShare Class', () => {
   //   }
   //   // console.log(sf.dtype);
   // });
-  // test('pro_bar', async () => {
-  //   jest.useFakeTimers();
-  //   // jest.setTimeout(10000 * 1000);
-  //   // const mock = new MockAdapter(axios);
-  //   // mock.onPost(`http://api.tushare.pro`).reply(() =>
-  //   //   // the actual id can be grabbed from config.url
-  //   //   [200, daily]
-  //   // );
-  //   const d = await ts.pro_bar({
-  //     ts_code: '000001.SZ',
-  //     start_date: '20220108',
-  //     // end_date: '20220809',
-  //     freq: 'D',
-  //     adj: 'qfq',
-  //   });
-  //   console.log(d);
-  //   jest.useRealTimers();
-  // });
+  test('pro_bar', async () => {
+    jest.useFakeTimers();
+    // jest.setTimeout(10000 * 1000);
+    // const mock = new MockAdapter(axios);
+    // mock.onPost(`http://api.tushare.pro`).reply(() =>
+    //   // the actual id can be grabbed from config.url
+    //   [200, daily]
+    // );
+    const d = await ts.pro_bar({
+      ts_code: '000001.SZ',
+      start_date: '20220108',
+      // end_date: '20220809',
+      freq: '15min',
+      adj: 'qfq',
+    });
+    console.log(d);
+    jest.useRealTimers();
+  });
 });
