@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/gavin-hao/tushare-js/compare/v1.2.1...v1.3.0) (2022-08-29)
+
+
+### Bug Fixes
+
+* **pro_bar:** pro_bar support min freq ([efc19cd](https://github.com/gavin-hao/tushare-js/commit/efc19cd7763e6abd513b4cb4d6a931ef73c299be))
+
+
+### Features
+
+* **client:** add pro_bar method ([3b1e013](https://github.com/gavin-hao/tushare-js/commit/3b1e013fe04b9a8f669a3cdb39e559391cf9efba))
+
 ## [1.2.1](https://github.com/gavin-hao/tushare-js/compare/v1.2.0...v1.2.1) (2022-08-21)
 
 
