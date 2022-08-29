@@ -89,6 +89,8 @@ export interface Api {
   coin_bar: ApiDescription;
   opt_daily: ApiDescription;
   fut_daily: ApiDescription;
+  stk_mins: ApiDescription;
+  cb_daily: ApiDescription;
 }
 
 export const fieldsDescription = {
@@ -2226,6 +2228,39 @@ export const api: Api = {
       'vol',
       'amount',
       'oi',
+    ],
+  },
+  stk_mins: {
+    params: {},
+    fields: [],
+  },
+  /**
+   * 接口：cb_daily
+   * 描述：获取可转债行情
+   * 限量：单次最大2000条，可多次提取，总量不限制
+   * 积分：用户需要至少2000积分才可以调取，5000积分以上频次相对较高，积分越多权限越大，具体请参阅积分获取办法
+   */
+  cb_daily: {
+    params: {
+      // ts_code: '',
+      // trade_date: '',
+      // start_date: '',
+      // end_date: '',
+      // limit: '',
+      // offset: '',
+    },
+    fields: [
+      'ts_code',
+      'trade_date',
+      'pre_close',
+      'open',
+      'high',
+      'low',
+      'close',
+      'change',
+      'pct_chg',
+      'vol',
+      'amount',
     ],
   },
   // @TODO: 期货

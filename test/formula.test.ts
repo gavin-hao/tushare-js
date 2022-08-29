@@ -20,6 +20,9 @@ describe('Formula testing', () => {
     console.log(data.toJSON());
     // df.print();
     data.print();
+    const aa = df.column('A').append(new Series([NaN]), [-1]);
+    aa.resetIndex({ inplace: true });
+    aa.print();
   });
   it('test ma', () => {
     const data1 = [1, 2, 3, 4, 5, 6, 7];
